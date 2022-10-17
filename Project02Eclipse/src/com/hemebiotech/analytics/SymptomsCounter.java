@@ -1,8 +1,8 @@
 package com.hemebiotech.analytics;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Provides a symptom counting method
@@ -15,7 +15,7 @@ public abstract class SymptomsCounter {
      * @return A map with unique symptoms as keys and number of occurences as values
      */
     public static Map<String, Integer> countSymptomsFromList(List<String> symptomData) {
-        Map<String, Integer> symptomCounts = new HashMap<String, Integer>();
+        Map<String, Integer> symptomCounts = new TreeMap<String, Integer>();
         boolean isNewSymptom;
 
         for (String symptomString : symptomData) {
