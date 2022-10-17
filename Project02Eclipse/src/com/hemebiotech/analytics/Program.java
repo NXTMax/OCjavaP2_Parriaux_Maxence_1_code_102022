@@ -2,9 +2,7 @@ package com.hemebiotech.analytics;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-
-import com.hemebiotech.analytics.SymptomsCounter.SymptomCount;
+import java.util.Map;
 
 public class Program {
 
@@ -16,12 +14,12 @@ public class Program {
         }
         
         ReadSymptomDataFromFile symptomFileReader = new ReadSymptomDataFromFile(args[0]);
-        ArrayList<SymptomCount> symptomCounts = SymptomsCounter.countSymptomsFromList(symptomFileReader.GetSymptoms());
+        Map<String, Integer> symptomCounts = SymptomsCounter.countSymptomsFromList(symptomFileReader.GetSymptoms());
 
         try {
             FileWriter writer = new FileWriter(args[1]);
-            for (SymptomCount symptomCount : symptomCounts) {
-                writer.write(symptomCount.toString() + '\n');
+            for (Map.Entry<String,Integer> symptomCount : symptomCounts.entrySet()) {
+                writer.write(symptomCount.toString() + '\n'); //Lucky me, the toString format for Map entries goes "key=value"
             }
             writer.close();
         } catch (IOException e) {
